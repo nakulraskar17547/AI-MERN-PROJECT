@@ -9,7 +9,7 @@ import WebsiteEditor from './pages/Editor'
 import Livesite from './pages/Livesite'
 import Pricing from './pages/Pricing'
 import PaymentSuccess from './pages/PaymentSuccess'
-export const serverUrl="http://localhost:8000"
+export const serverUrl="https://ai-mern-project-1-wanc.onrender.com"
  function App() {
   useGetCurrentUser()
   const {userData}=useSelector(state=>state.user)
