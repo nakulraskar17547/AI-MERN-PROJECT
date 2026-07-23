@@ -1,0 +1,16 @@
+{
+  "tailwindCSS.experimental.classRegex": [
+    ["className\\s*[=:]\\s*['\"]([^'\"]*)['\"]", "([a-zA-Z0-9-:/ ]+)"]
+  ],
+  "editor.quickSuggestions": {
+    "strings": true,
+    "other": true,
+    "comments": false
+  },
+  "css.validate": false,
+  "tailwindCSS.emmetCompletions": true,
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always"
+}
