@@ -15,7 +15,7 @@ const port = process.env.PORT || 5000
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: "https://ai-mern-project-2-3bi9.onrender.com",
+    origin: "https://ai-mern-project-2-k4y4.onrender.com",
     credentials:true
 }))
 
