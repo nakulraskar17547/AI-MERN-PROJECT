@@ -1,212 +1,116 @@
-# GenWeb.ai - AI-Powered Website Builder
-
-A full-stack MERN application that generates professional, responsive websites using AI. Users can create, customize, and deploy websites with natural language prompts.
-
-🔗 **Live Demo**: [https://ai-mern-project-liu8.vercel.app/](https://ai-mern-project-liu8.vercel.app/)
-
-## Features
-
-- **AI Website Generation** - Generate complete, responsive websites from text descriptions
-- **Real-time Editor** - Live preview and code editing with Monaco Editor
-- **AI-Powered Updates** - Modify websites using natural language commands
-- **User Authentication** - Secure login with Google OAuth via Firebase
-- **Credit System** - Pay-per-use model with Stripe integration
-- **Public Sharing** - Share deployed websites with anyone via public links
-- **Responsive Design** - All generated websites work on mobile, tablet, and desktop
-- **Dashboard** - Manage all your generated websites in one place
-
-## Tech Stack
-
-### Frontend
-- React 18
-- Vite
-- TailwindCSS
-- Monaco Editor (VS Code editor)
-- Framer Motion (animations)
-- Axios
-- React Router
-- Redux Toolkit
-
-### Backend
-- Node.js
-- Express.js
-- MongoDB with Mongoose
-- Firebase Admin (authentication)
-- Stripe (payments)
-- OpenRouter API (AI generation)
-
-## Project Structure
-
+# 🚀 GenWeb.ai — AI-Powered Full-Stack Website Builder
+[![Vercel Deployment](https://img.shields.io/badge/Frontend-Vercel-black?style=flat-square&logo=vercel)](https://ai-mern-project-liu8.vercel.app/)
+[![Render Deployment](https://img.shields.io/badge/Backend-Render-informational?style=flat-square&logo=render)](https://ai-mern-project-1-gfvb.onrender.com)
+[![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)](https://react.dev/)
+[![Node.js](https://img.shields.io/badge/Node.js-Express-green?style=flat-square&logo=nodedotjs)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/Database-MongoDB-forestgreen?style=flat-square&logo=mongodb)](https://www.mongodb.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+> **GenWeb.ai** is a modern MERN stack web application that generates production-ready, beautiful, and fully interactive websites from plain text prompts using Advanced AI models. It features a built-in Monaco code editor, live website previews, instant website sharing, credit management, and Stripe integration.
+---
+## 🌟 Key Features
+- 🤖 **AI Website Generator**: Input any text prompt and watch GenWeb.ai craft responsive HTML, CSS, and JavaScript in seconds.
+- 💻 **Monaco Code Editor**: Live code editor powered by VS Code's Monaco editor. Tweak, edit, or regenerate code on the fly.
+- 👁️ **Live Interactive Preview**: Real-time iframe sandbox preview for instantaneous visual feedback.
+- 🔐 **Firebase Google Authentication**: One-click secure sign-in with Google OAuth and JWT-based session security.
+- 🚀 **1-Click Site Hosting & Sharing**: Instant deployment of generated projects with shareable live site links.
+- 💳 **Stripe Subscription & Credit System**: Tiered pricing plans (Free, Pro, Enterprise) integrated with Stripe Checkout & Webhooks.
+- 🎨 **Modern Dark Glassmorphism UI**: Beautiful UI built with React 19, Tailwind CSS v4, and Framer Motion micro-interactions.
+---
+## 🛠️ Tech Stack
+### **Frontend**
+- **Framework**: React 19 + Vite
+- **State Management**: Redux Toolkit & React-Redux
+- **Code Editor**: `@monaco-editor/react`
+- **Styling**: Tailwind CSS v4 & Lucide Icons
+- **Animations**: Framer Motion (`motion/react`)
+- **Auth Client**: Firebase Auth (Google OAuth)
+- **HTTP Client**: Axios
+### **Backend**
+- **Runtime**: Node.js & Express.js (ES Modules)
+- **Database**: MongoDB with Mongoose ODM
+- **AI Integration**: OpenRouter API
+- **Payments**: Stripe API & Webhook Controller
+- **Authentication**: JSON Web Tokens (JWT) & Cookie Parser
+---
+## 📁 Project Structure
+```text
+1.websiteBuilder/
+├── client/                      # React Frontend Application
+│   ├── public/                  # Static Assets
+│   ├── src/
+│   │   ├── assets/              # Logos & media assets
+│   │   ├── components/          # Reusable components (LoginModal, Navbar, etc.)
+│   │   ├── hooks/               # Custom hooks (useGetCurrentUser, etc.)
+│   │   ├── pages/               # App views (Home, Dashboard, Generate, Editor, Livesite, Pricing)
+│   │   ├── redux/               # Redux slices & store configuration
+│   │   ├── App.jsx              # Main routing & global providers
+│   │   ├── firebase.js          # Firebase SDK client setup
+│   │   └── main.jsx             # React entry point
+│   ├── .env.production          # Production environment variables
+│   ├── vercel.json              # Vercel SPA rewrite rules
+│   └── package.json
+│
+└── server/                      # Node.js Express Backend API
+    ├── config/                  # Database connection (MongoDB)
+    ├── controllers/             # Business logic (Auth, User, Website, Billing, Stripe Webhooks)
+    ├── middlewares/             # Auth JWT middleware
+    ├── models/                  # Mongoose Schemas (User, Website)
+    ├── routes/                  # API endpoints definition
+    ├── index.js                 # Express application server entry point
+    └── package.json
 ```
-AI-MERN-PROJECT/
-├── 1.websiteBuilder/
-│   ├── client/              # React frontend
-│   │   ├── src/
-│   │   │   ├── pages/       # Page components
-│   │   │   ├── components/  # Reusable components
-│   │   │   ├── hooks/       # Custom hooks
-│   │   │   ├── redux/       # State management
-│   │   │   └── firebase.js  # Firebase config
-│   │   └── package.json
-│   │
-│   └── server/              # Express backend
-│       ├── controllers/     # Route handlers
-│       ├── models/          # MongoDB schemas
-│       ├── routes/          # API routes
-│       ├── middlewares/     # Auth & validation
-│       ├── config/          # DB & API configs
-│       ├── utils/           # Helper functions
-│       └── package.json
+---
+## ⚙️ Environment Variables
+To run this project locally or deploy it to production, set up the following environment variables:
+### **Client Environment Variables** (`client/.env`)
+```env
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_API_URL=http://localhost:8000
 ```
-
-## Setup & Installation
-
-### Prerequisites
-- Node.js (v18 or higher)
-- MongoDB Atlas account
-- Firebase project
-- Stripe account
-- OpenRouter API key
-
-### Environment Variables
-
-#### Server (`.env` in `1.websiteBuilder/server/`)
+### **Server Environment Variables** (`server/.env`)
 ```env
 PORT=8000
-MONGODB_URL=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
+MONGODB_URL=mongodb+srv://<user>:<password>@cluster.mongodb.net/GENWEBAI?retryWrites=true&w=majority
+JWT_SECRET=your_jwt_secret_key
 OPENROUTER_API_KEY=your_openrouter_api_key
+FRONTEND_URL=http://localhost:5173
 STRIPE_SECRET_KEY=your_stripe_secret_key
 STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 ```
-
-#### Client (`.env` in `1.websiteBuilder/client/`)
-```env
-VITE_API_URL=http://localhost:8000
-VITE_FIREBASE_API_KEY=your_firebase_api_key
-```
-
-### Installation Steps
-
-1. **Clone the repository**
+---
+## 🚀 Quick Start (Local Setup)
+### **Prerequisites**
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [MongoDB](https://www.mongodb.com/) (Local or MongoDB Atlas)
+- Git
+### **1. Clone the Repository**
 ```bash
 git clone https://github.com/nakulraskar17547/AI-MERN-PROJECT.git
-cd AI-MERN-PROJECT
+cd AI-MERN-PROJECT/1.websiteBuilder
 ```
-
-2. **Install server dependencies**
+### **2. Setup Server**
 ```bash
-cd 1.websiteBuilder/server
+cd server
 npm install
-```
-
-3. **Install client dependencies**
-```bash
-cd ../client
-npm install
-```
-
-4. **Set up environment variables**
-   - Create `.env` files in both server and client directories
-   - Add all required environment variables
-
-5. **Start the development servers**
-
-Terminal 1 (Backend):
-```bash
-cd 1.websiteBuilder/server
+# Create .env file with your credentials
 npm run dev
 ```
-
-Terminal 2 (Frontend):
+> Server runs on `http://localhost:8000`
+### **3. Setup Client**
+Open a new terminal:
 ```bash
-cd 1.websiteBuilder/client
+cd client
+npm install
+# Create .env file with your credentials
 npm run dev
 ```
-
-## Deployment
-
-### Backend (Render)
-1. Connect your GitHub repository
-2. Set root directory to `1.websiteBuilder/server`
-3. Add environment variables in Render dashboard
-4. Deploy
-
-### Frontend (Vercel)
-1. Connect your GitHub repository
-2. Set root directory to `1.websiteBuilder/client`
-3. Set framework preset to Vite
-4. Add environment variables:
-   - `VITE_API_URL`
-   - `VITE_FIREBASE_API_KEY`
-5. Deploy
-
-## API Endpoints
-
-### Authentication
-- `POST /api/auth/google` - Google OAuth login
-- `GET /api/auth/logout` - Logout user
-
-### User
-- `GET /api/user/me` - Get current user info
-
-### Website
-- `POST /api/website/generate` - Generate new website (50 credits)
-- `POST /api/website/update/:id` - Update website (25 credits)
-- `GET /api/website/get-by-id/:id` - Get website (authenticated)
-- `GET /api/website/public/:id` - Get deployed website (public)
-- `GET /api/website/get-all` - Get all user websites
-- `POST /api/website/mark-deployed/:id` - Mark website as deployed
-
-### Billing
-- `POST /api/billing` - Create Stripe checkout session
-- `POST /api/billing/verify` - Verify payment and add credits
-- `POST /api/billing/webhook` - Stripe webhook handler
-
-## Credits System
-
-- **Free Plan**: 100 credits (₹0)
-- **Pro Plan**: 500 credits (₹499)
-- **Enterprise Plan**: 1000 credits (₹1499)
-
-Usage:
-- Generate website: 50 credits
-- Update website: 25 credits
-
-## Key Features Explanation
-
-### AI Website Generation
-Uses OpenRouter API with DeepSeek model to generate complete HTML/CSS/JavaScript websites based on user prompts. All websites are:
-- Fully responsive (mobile, tablet, desktop)
-- Single-page applications with smooth navigation
-- Production-ready with no placeholders
-- Styled with modern UI/UX principles
-
-### Live Editor
-Built with Monaco Editor (same as VS Code), allows:
-- Real-time code editing
-- Live preview in iframe
-- Syntax highlighting
-- Dark theme
-
-### Public Sharing
-Deployed websites can be shared via public URLs without requiring authentication. Only websites marked as "deployed" are publicly accessible.
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-MIT
-
-## Contact
-
-Nakul Raskar - [GitHub](https://github.com/nakulraskar17547)
-
-## Acknowledgments
-
-- OpenRouter for AI API
-- Firebase for authentication
-- Stripe for payment processing
-- Render & Vercel for hosting
+> Client runs on `http://localhost:5173`
+---
+## 🌐 Live Deployment Links
+- **Frontend Application**: [https://ai-mern-project-liu8.vercel.app](https://ai-mern-project-liu8.vercel.app)
+- **Backend API**: [https://ai-mern-project-1-gfvb.onrender.com](https://ai-mern-project-1-gfvb.onrender.com)
+---
+## 📜 License
+Distributed under the ISC License. See `LICENSE` for more information.
+---
+Made with ❤️ by [Nakul Raskar](https://github.com/nakulraskar17547)
