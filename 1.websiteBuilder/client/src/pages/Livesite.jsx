@@ -11,13 +11,12 @@ function Livesite() {
     const handleGetWebsite = async () => {
       try {
         const result = await axios.get(
-          `${serverUrl}/api/website/get-by-id/${id}`,
-          { withCredentials: true })
+          `${serverUrl}/api/website/public/${id}`)
           setHtml(result.data.latestCode)
         
       } catch (error) {
         console.log(error);
-        setError("Site not found")
+        setError("Site not found or not deployed")
         
       }
     };
@@ -32,7 +31,7 @@ function Livesite() {
   }
   return (
     <iframe title="Live Site" srcDoc={html} className="w-screen h-screen
-    border-none" sandbox="allow-scripts allow-same-origin allo-forms"/>
+    border-none" sandbox="allow-scripts allow-same-origin allow-forms"/>
   )
 }
 

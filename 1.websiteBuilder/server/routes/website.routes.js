@@ -1,7 +1,7 @@
 import express from "express"
 
 import isAuth from "../middlewares/isAuth.js"
-import { changes, generateWebsite, getAll, getWebsiteById, getBySlug, markDeployed } from "../controllers/website.controller.js"
+import { changes, generateWebsite, getAll, getWebsiteById, getBySlug, markDeployed, getPublicWebsite } from "../controllers/website.controller.js"
 
 
 const websiteRouter = express.Router()
@@ -13,5 +13,6 @@ websiteRouter.get("/get-by-id/:id",isAuth, getWebsiteById)
 websiteRouter.get("/get-by-slug/:slug", getBySlug)
 websiteRouter.get("/get-all",isAuth, getAll)
 websiteRouter.post("/mark-deployed/:id",isAuth, markDeployed)
+websiteRouter.get("/public/:id", getPublicWebsite) // No auth required
 
 export default websiteRouter

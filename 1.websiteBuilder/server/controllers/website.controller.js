@@ -410,3 +410,29 @@ export const markDeployed = async (req, res) => {
     return res.status(500).json({ message: `mark deployed error ${error.message}` });
   }
 };
+
+// Public endpoint - no authentication required
+export const getPublicWebsite = async (req, res) => {
+  try {
+    const website = await Website.findOne({
+      _id: req.params.id,
+      deployed: true, // Only show deployed websites publicly
+    });
+
+    if (!website) {
+      return res.status(404).json({ message: "website not found or not deployed" });
+    }
+
+    // Only return the code, not sensitive info like user ID or conversation
+    return res.status(200).json({
+      title: website.title,
+      latestCode: website.latestCode,
+    });
+  } catch (error) {
+    console.error("Get public website error:", error);
+    if (error.name === "CastError") {
+      return res.status(400).json({ message: "invalid website ID format" });
+    }
+    return res.status(500).json({ message: `get public website error ${error.message}` });
+  }
+};
