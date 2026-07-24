@@ -5,12 +5,13 @@ import { signInWithPopup } from "firebase/auth";
 import axios from "axios"
 import { useDispatch } from "react-redux";
 import { setUserData } from "../redux/userSlice";
+import { serverUrl } from "../App";
 function LoginModal({ open, onClose }) {
   const dispatch=useDispatch()
   const handleGoogleAuth=async ()=> {
     try{
         const result = await signInWithPopup(auth,provider)
-        const {data}=await axios.post(`http://localhost:8000/api/auth/google`,{
+        const {data}=await axios.post(`${serverUrl}/api/auth/google`,{
           name:result.user.displayName,
           email:result.user.email,
           avatar:result.user.photoURL
