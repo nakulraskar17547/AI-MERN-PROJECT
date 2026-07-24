@@ -2,6 +2,8 @@
 
 A full-stack MERN application that generates professional, responsive websites using AI. Users can create, customize, and deploy websites with natural language prompts.
 
+🔗 **Live Demo**: [https://ai-mern-project-liu8.vercel.app/](https://ai-mern-project-liu8.vercel.app/)
+
 ## Features
 
 - **AI Website Generation** - Generate complete, responsive websites from text descriptions
@@ -124,8 +126,8 @@ npm run dev
 ```
 
 6. **Access the application**
-   - Frontend: http://localhost:5173
-   - Backend: http://localhost:8000
+   - Open http://localhost:5173 in your browser
+   - Backend API runs on http://localhost:8000
 
 ## Deployment
 
