@@ -76,7 +76,6 @@ PORT=8000
 MONGODB_URL=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 OPENROUTER_API_KEY=your_openrouter_api_key
-FRONTEND_URL=http://localhost:5173
 STRIPE_SECRET_KEY=your_stripe_secret_key
 STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 ```
@@ -124,10 +123,6 @@ Terminal 2 (Frontend):
 cd 1.websiteBuilder/client
 npm run dev
 ```
-
-6. **Access the application**
-   - Open http://localhost:5173 in your browser
-   - Backend API runs on http://localhost:8000
 
 ## Deployment
 
