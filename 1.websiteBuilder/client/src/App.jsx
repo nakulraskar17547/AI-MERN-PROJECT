@@ -9,7 +9,7 @@ import WebsiteEditor from './pages/Editor'
 import Livesite from './pages/Livesite'
 import Pricing from './pages/Pricing'
 import PaymentSuccess from './pages/PaymentSuccess'
-export const serverUrl = import.meta.env.VITE_API_URL || "http://localhost:8000"
+export const serverUrl = import.meta.env.VITE_API_URL || "https://ai-mern-project-1-gfvb.onrender.com"
  function App() {
   useGetCurrentUser()
   const {userData}=useSelector(state=>state.user)
