@@ -89,3 +89,38 @@ export const handleWebhook = async (req, res) => {
     return res.status(400).json({ message: `Webhook error: ${error.message}` });
   }
 };
+
+// Manual verification endpoint (for testing when webhook is not set up)
+export const verifyPayment = async (req, res) => {
+  try {
+    const { sessionId } = req.body;
+    
+    if (!sessionId) {
+      return res.status(400).json({ message: "Session ID required" });
+    }
+
+    const stripeClient = getStripe();
+    const session = await stripeClient.checkout.sessions.retrieve(sessionId);
+
+    if (session.payment_status === "paid") {
+      const userId = session.metadata.userId;
+      const credits = parseInt(session.metadata.credits);
+      
+      const user = await User.findById(userId);
+      if (user) {
+        user.credits += credits;
+        await user.save();
+        
+        return res.status(200).json({ 
+          message: "Credits added successfully",
+          credits: user.credits 
+        });
+      }
+    }
+
+    return res.status(400).json({ message: "Payment not completed" });
+  } catch (error) {
+    console.error("Verify payment error:", error);
+    return res.status(500).json({ message: `Verification error: ${error.message}` });
+  }
+};

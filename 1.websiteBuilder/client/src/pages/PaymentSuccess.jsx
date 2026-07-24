@@ -2,20 +2,53 @@ import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { CheckCircle } from 'lucide-react';
+import axios from 'axios';
+import { serverUrl } from '../App';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../redux/userSlice';
 
 function PaymentSuccess() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
 
   useEffect(() => {
+    // Verify payment and add credits
+    const verifyAndRefetch = async () => {
+      if (sessionId) {
+        try {
+          // Call verify endpoint to add credits
+          await axios.post(
+            `${serverUrl}/api/billing/verify`,
+            { sessionId },
+            { withCredentials: true }
+          );
+        } catch (error) {
+          console.log('Error verifying payment:', error);
+        }
+      }
+
+      // Refetch user data to get updated credits
+      try {
+        const response = await axios.get(`${serverUrl}/api/user/me`, {
+          withCredentials: true,
+        });
+        dispatch(setUserData(response.data));
+      } catch (error) {
+        console.log('Error refetching user:', error);
+      }
+    };
+
+    verifyAndRefetch();
+
     // Redirect to dashboard after 3 seconds
     const timer = setTimeout(() => {
       navigate('/dashboard');
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [navigate]);
+  }, [navigate, dispatch, sessionId]);
 
   return (
     <div className="min-h-screen bg-[#050505] text-white flex items-center justify-center px-6">
