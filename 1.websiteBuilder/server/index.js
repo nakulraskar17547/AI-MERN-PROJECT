@@ -16,17 +16,19 @@ app.use(express.json())
 app.use(cookieParser())
 const allowedOrigins = [
     process.env.FRONTEND_URL,
+    "https://ai-mern-project-liu8.vercel.app",
     "http://localhost:5173",
     "http://localhost:3000"
 ].filter(Boolean)
 
 app.use(cors({
     origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl)
         if (!origin) return callback(null, true)
         if (allowedOrigins.includes(origin) || origin.endsWith(".vercel.app")) {
-            return callback(null, true)
+            return callback(null, origin)
         }
-        return callback(null, true)
+        return callback(null, origin)
     },
     credentials: true
 }))
